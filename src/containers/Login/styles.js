@@ -97,4 +97,12 @@ label{
     color: #fff;
     margin-left: 5px;
 }
+
+p{
+    font-size:14px;
+    line-height: 150%;
+    color: #cf3057;
+    font-weight: 600;
+    height: 10px;
+}
 `
