@@ -4,6 +4,7 @@ import * as yup from "yup"
 
 import { Container, LeftContainer, RightContainer, Title, Form, InputContainer } from './styles'
 import Logo from '../../assets/logo.svg'
+import { api } from '../../services/api'
 
 import { Button } from '../../components/Button';
 
@@ -31,7 +32,13 @@ export function Login() {
   })
   console.log(errors)
 
-  const onSubmit = (data) => console.log(data)
+  const onSubmit = async (data) => {
+    const response = await api.post('/session', {
+      email: data.email,
+      password: data.password,
+    })
+    console.log(response)
+  }
 
 
   return (
