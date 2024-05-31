@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form"
 import { yupResolver } from "@hookform/resolvers/yup"
 import * as yup from "yup"
+import { toast } from "react-toastify"
 
 import { Container, LeftContainer, RightContainer, Title, Form, InputContainer } from './styles'
 import Logo from '../../assets/logo.svg'
@@ -33,10 +34,17 @@ export function Login() {
   console.log(errors)
 
   const onSubmit = async (data) => {
-    const response = await api.post('/session', {
-      email: data.email,
-      password: data.password,
-    })
+    const response = await toast.promise(
+      api.post('/session', {
+        email: data.email,
+        password: data.password,
+      }),
+      {
+        pending: 'Verificando seus dados',
+        success: 'Seja Bem-vindo(a) 👌',
+        error: 'Email ou Senha Incorretos 🤯'
+      }
+    )
     console.log(response)
   }
 
